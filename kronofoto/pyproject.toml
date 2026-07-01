@@ -117,14 +117,13 @@ black = "python -m black {args}"
 
 [tool.hatch.envs.docs]
 dependencies = [
-  # sphinxcontrib-django's docstring processor is incompatible with Sphinx 9's
-  # rewritten autodoc internals (crashes on the bare django.db.models.Model
-  # class); cap below 9 until that's fixed upstream.
-  "sphinx>=6.2.1,<9",
-  "sphinxcontrib-django",
+  "mkdocs",
+  "mkdocs-material",
+  "mkdocstrings[python]",
 ]
 [tool.hatch.envs.docs.scripts]
-build = "make -C docs html"
+build = "mkdocs build --strict"
+serve = "mkdocs serve"
 
 [tool.hatch.envs.types]
 dependencies = [

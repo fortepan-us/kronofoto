@@ -586,7 +586,7 @@ class Photo(PhotoBase):
 
         Args:
             height (int, optional): Desired height.
-            width (int, optional) Desired width.
+            width (int, optional): Desired width.
 
         Returns:
             str: The URL with that image resolution.

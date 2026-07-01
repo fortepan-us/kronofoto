@@ -34,13 +34,13 @@ jobs:
       - name: Install Hatch
         run: pip install hatch
 
-      - name: Build Sphinx docs
+      - name: Build docs
         run: cd kronofoto && hatch run docs:build
 
       - name: Upload docs artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: kronofoto/docs/_build/html
+          path: kronofoto/site
 
   deploy:
     needs: build
