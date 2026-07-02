@@ -14,34 +14,50 @@ MyList allows researchers and creators to create customized lists of photos acco
 
 # Install the dependencies:
 
-You must use Python 3. Optionally, you probably should use a virtual environment:
+You must use Python 3. Dependencies and virtual environments are managed with
+[Hatch](https://hatch.pypa.io/) (see `kronofoto/pyproject.toml`), not a plain
+`requirements.txt` venv.
 
-    python -m venv kfenv
-    source kfenv/bin/activate
-    
-Install dependencies:
+Install Hatch:
 
-    python -m pip install -r requirements.txt
+    pip install hatch
+
+You'll also need the system GIS libraries used by the spatialite database backend:
+
+    sudo apt-get install gdal-bin spatialite-bin libsqlite3-mod-spatialite
 
 # Configure kronofoto:
 
-Copy the examplesettings.py file in the kronofoto directory to settings.py. Fill in the missing values.
+Settings live in `kronofoto/fortepan_us/settings/` (`dev.py`, `prod.py`, etc.) —
+there is no `examplesettings.py` to copy. For local development, set:
+
+    export SECRET_KEY=some-dev-secret
+    export DJANGO_SETTINGS_MODULE=fortepan_us.settings.dev
+
+Hatch will create its virtual environment and install dependencies automatically
+the first time you run a command. All commands below are run from the
+`kronofoto/kronofoto` directory (the inner one, next to `pyproject.toml`):
+
+    cd kronofoto
 
 Run the migrations:
 
-    ./manage.py migrate
+    hatch run manage migrate
 
 Create the cache table:
 
-    ./manage.py createcachetable
-    
+    hatch run manage createcachetable
+
 Create a superuser account:
 
-    ./manage.py createsuperuser
+    hatch run manage createsuperuser
 
 The test server can then be started up:
 
-    ./manage.py runserver 0.0.0.0:8000
+    hatch run manage runserver 0.0.0.0:8000
+
+Note: `APPEND_SLASH` is disabled in the dev settings, so URLs like `/admin`
+will 404 — always include the trailing slash (`/admin/`).
 
 You will also need to log into the admin and [change the site domain](http://127.0.0.1:8000/admin/sites/site/) from example.com to 127.0.0.1:8000.
 
