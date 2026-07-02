@@ -1,0 +1,49 @@
+site_name: Kronofoto
+site_description: Fortepan.us / Kronofoto documentation
+repo_url: https://github.com/fortepan-us/kronofoto
+repo_name: fortepan-us/kronofoto
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+
+nav:
+  - Home: index.md
+  - Reference:
+      - kronofoto: reference/kronofoto.md
+      - models: reference/models.md
+      - views: reference/views.md
+      - auth: reference/auth.md
+      - forms: reference/forms.md
+      - search: reference/search.md
+      - templatetags: reference/templatetags.md
+      - management: reference/management.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["."]
+          options:
+            docstring_style: google
+            show_root_heading: true
+            show_source: true
+            show_submodules: false
+            merge_init_into_class: true

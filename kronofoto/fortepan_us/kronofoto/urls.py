@@ -23,7 +23,7 @@ from typing import Sequence, Union, List, Callable, Dict, Any, Optional, Tuple
 
 
 class NegativeIntConverter:
-    regex = '-?\d+'
+    regex = r'-?\d+'
 
     def to_python(self, value: str) -> int:
         return int(value)

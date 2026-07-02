@@ -134,6 +134,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
+kronofoto/site
 
 # mypy
 .mypy_cache/
